@@ -24,10 +24,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: "echo Hello, ${{ github.event.inputs.tag_name }}!"
-
       - name: Git setup
         run: "git config --local user.email ghaction_release.satqe.com && git config --local user.name ghaction_release"
 
@@ -36,6 +32,9 @@ jobs:
 
       - name: push the commit with the tag
         run: "git push ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git --tags"
+
+      - name: print the resulting URL
+        run: "echo ${GITHUB_API_URL}/${GITHUB_REPOSITORY}/releases"
 
       - name: create a release
         env:
