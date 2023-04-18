@@ -39,5 +39,5 @@ jobs:
 
       - name: create a release
         env:
-          credentials: ${{ GH_TOKEN }}
-        run: "curl -L -X POST -H \"Authorization: Bearer ${GH_TOKEN} ${GITHUB_API_URL}/${GITHUB_REPOSITORY}/releases" -d '{\"draft\":false, \"prerelease\":true, \"generate_release_notes\": true, \"tag_name\": \"${{ github.event.inputs.tag_name }}\", \"target_commitish\": \"${GITHUB_REF_NAME}"}'
+          credentials: ${{ secrets.GH_TOKEN }}
+        run: "curl -L -X POST -H \"Authorization: Bearer ${{ secrets.GH_TOKEN }}\" ${GITHUB_API_URL}/${GITHUB_REPOSITORY}/releases -d '{\"draft\":false, \"prerelease\":true, \"generate_release_notes\": true, \"tag_name\": \"${{ github.event.inputs.tag_name }}\", \"target_commitish\": \"${GITHUB_REF_NAME}\"}'"
