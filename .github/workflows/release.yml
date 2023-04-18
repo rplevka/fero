@@ -28,6 +28,9 @@ jobs:
       - name: Run a one-line script
         run: "echo Hello, ${{ github.event.inputs.tag_name }}!"
 
+      - name: Git setup
+        run: "git config --local user.email ${GIT_USERNAME.satqe.com} && git config --local user.name ${GIT_USERNAME}"
+
       - name: add a new tag
         run: "git tag -a ${{ github.event.inputs.tag_name }} -m 'Tagged By SatelliteQE Automation User'"
 
