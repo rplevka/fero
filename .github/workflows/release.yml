@@ -28,5 +28,8 @@ jobs:
       - name: Run a one-line script
         run: "echo Hello, ${{ github.event.inputs.tag_name }}!"
 
-      #- name: add a new tag
-      #run: git tag -a ${TAG_NAME} -m 'Tagged By SatelliteQE Automation User'
+      - name: add a new tag
+        run: "git tag -a ${{ github.event.inputs.tag_name }} -m 'Tagged By SatelliteQE Automation User'"
+
+      - name: push the commit with the tag
+        run: "git push ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git --tags"
